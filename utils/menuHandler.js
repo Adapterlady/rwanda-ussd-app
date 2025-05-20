@@ -30,22 +30,22 @@ class MenuHandler {
     switch (level) {
       case 'welcome':
         return this.handleWelcomeMenu(session, userInput);
-      case 'findServices':
+      case 'findServices': // Now represents "Browse Products"
         return this.handleFindServicesMenu(session, userInput);
       case 'contactUs':
         return this.handleContactUsMenu(session, userInput);
-      case 'healthcare':
+      case 'healthcare': // Now represents "Smartphones"
         return this.handleHealthcareMenu(session, userInput);
-      case 'education':
+      case 'education': // Now represents "Computers"
         return this.handleEducationMenu(session, userInput);
-      case 'transportation':
+      case 'transportation': // Now represents "Accessories"
         return this.handleTransportationMenu(session, userInput);
-      case 'findHospital':
-      case 'emergencyNumbers':
-      case 'schools':
-      case 'universities':
-      case 'publicTransport':
-      case 'taxiServices':
+      case 'findHospital': // Now represents "iPhone Models"
+      case 'emergencyNumbers': // Now represents "Samsung Models"
+      case 'schools': // Now represents "Laptops"
+      case 'universities': // Now represents "Desktops"
+      case 'publicTransport': // Now represents "Phone Cases"
+      case 'taxiServices': // Now represents "Chargers"
         return this.handleSubMenu(session, userInput);
       default:
         return {
@@ -59,22 +59,21 @@ class MenuHandler {
     const { language } = session;
     
     switch (userInput) {
-      case '1':
+      case '1': // Browse Products
         session.level = 'findServices';
         session.history.push('welcome');
         return {
           response: translations[language].findServices,
           endSession: false
         };
-      case '2':
+      case '2': // Contact Us
         session.level = 'contactUs';
         session.history.push('welcome');
         return {
           response: translations[language].contactUs,
           endSession: false
         };
-      case '3':
-        // Toggle language
+      case '3': // Toggle language
         session.language = language === 'en' ? 'rw' : 'en';
         return {
           response: translations[session.language].welcome,
@@ -92,29 +91,28 @@ class MenuHandler {
     const { language } = session;
     
     switch (userInput) {
-      case '1':
+      case '1': // Smartphones
         session.level = 'healthcare';
         session.history.push('findServices');
         return {
           response: translations[language].healthcare,
           endSession: false
         };
-      case '2':
+      case '2': // Computers
         session.level = 'education';
         session.history.push('findServices');
         return {
           response: translations[language].education,
           endSession: false
         };
-      case '3':
+      case '3': // Accessories
         session.level = 'transportation';
         session.history.push('findServices');
         return {
           response: translations[language].transportation,
           endSession: false
         };
-      case '4':
-        // Back to main menu
+      case '4': // Back to main menu
         session.level = 'welcome';
         session.history = [];
         return {
@@ -151,22 +149,21 @@ class MenuHandler {
     const { language } = session;
     
     switch (userInput) {
-      case '1':
+      case '1': // iPhone Models
         session.level = 'findHospital';
         session.history.push('healthcare');
         return {
           response: translations[language].findHospital,
           endSession: false
         };
-      case '2':
+      case '2': // Samsung Models
         session.level = 'emergencyNumbers';
         session.history.push('healthcare');
         return {
           response: translations[language].emergencyNumbers,
           endSession: false
         };
-      case '3':
-        // Go back
+      case '3': // Go back
         return this.goBack(session);
       default:
         return {
@@ -180,22 +177,21 @@ class MenuHandler {
     const { language } = session;
     
     switch (userInput) {
-      case '1':
+      case '1': // Laptops
         session.level = 'schools';
         session.history.push('education');
         return {
           response: translations[language].schools,
           endSession: false
         };
-      case '2':
+      case '2': // Desktops
         session.level = 'universities';
         session.history.push('education');
         return {
           response: translations[language].universities,
           endSession: false
         };
-      case '3':
-        // Go back
+      case '3': // Go back
         return this.goBack(session);
       default:
         return {
@@ -209,22 +205,21 @@ class MenuHandler {
     const { language } = session;
     
     switch (userInput) {
-      case '1':
+      case '1': // Phone Cases
         session.level = 'publicTransport';
         session.history.push('transportation');
         return {
           response: translations[language].publicTransport,
           endSession: false
         };
-      case '2':
+      case '2': // Chargers
         session.level = 'taxiServices';
         session.history.push('transportation');
         return {
           response: translations[language].taxiServices,
           endSession: false
         };
-      case '3':
-        // Go back
+      case '3': // Go back
         return this.goBack(session);
       default:
         return {
